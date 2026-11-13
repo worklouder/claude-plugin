@@ -1,0 +1,6 @@
+# Node.js the plugin downloads when PATH has no Node.js 22.4 or later.
+# Hashes are the .tar.xz entries in https://nodejs.org/dist/v22.23.4/SHASUMS256.txt
+node_version=22.23.4
+node_dist=https://nodejs.org/dist
+node_sha256_arm64=037650d0839f457747396f052073fb48333d31bf5abd3c98b74da20d89ebb1ad
+node_sha256_x64=f42abca7aaac61efc57d49fb42ea84fc53bbeba9a749cb03a291ce6e4e7a69c1

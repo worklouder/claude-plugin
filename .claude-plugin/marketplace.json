@@ -1,0 +1,17 @@
+{
+  "name": "worklouder",
+  "owner": {
+    "name": "Work Louder Inc."
+  },
+  "plugins": [
+    {
+      "name": "worklouder",
+      "source": "./",
+      "description": "Claude Code session lights and Agent Keys through Work Louder Input on macOS.",
+      "version": "1.0.0"
+    }
+  ],
+  "metadata": {
+    "description": "Work Louder Input integration for Claude Code."
+  }
+}

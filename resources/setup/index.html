@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work Louder for Claude Code</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="brand-row">
+        <span class="eyebrow">WORK LOUDER®</span>
+        <span id="version" class="badge version"></span>
+      </div>
+      <div>
+        <h1>Claude Code<br>on your Micro.</h1>
+        <p>See every session at a glance and move between them from your Work Louder device.</p>
+      </div>
+    </header>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <section class="panel connection-panel">
+      <div class="section-heading">
+        <div><span class="step">01</span><h2>Connect Input</h2></div>
+        <span id="connection" class="badge status">Checking…</span>
+      </div>
+      <p>Keep the Input app open with your device connected. Approve <strong>Work Louder for Claude Code</strong> when Input asks.</p>
+      <button id="pair" type="button">Pair with Input</button>
+      <div id="device-row" class="device-row" hidden>
+        <label for="device">Device</label>
+        <select id="device"></select>
+        <button id="choose-device" class="secondary" type="button">Use this device</button>
+      </div>
+    </section>
+
+    <section class="panel layer-panel">
+      <div class="section-heading">
+        <div><span class="step">02</span><h2>Add the controls</h2></div>
+        <span id="layer-state" class="badge muted">Waiting</span>
+      </div>
+      <p id="layer-detail">Connect Input to see the active device profile.</p>
+      <p>The Claude Code layer adds six Agent Keys, encoder menu navigation, joystick session switching and scrolling, Review Changes, New Chat, Approve, Decline, model controls, and microphone controls. Your existing layers stay in place.</p>
+      <button id="add-layer" type="button" disabled>Confirm and add Claude Code layer</button>
+    </section>
+
+    <section class="panel ready-panel">
+      <div class="section-heading">
+        <div><span class="step">03</span><h2>Start Claude</h2></div>
+        <span id="ready-state" class="badge muted">After setup</span>
+      </div>
+      <p>Start Claude Code normally in Terminal, iTerm2 or Ghostty 1.4 or later. Agent Keys 1–6 follow your open sessions and the joystick moves between them.</p>
+      <div class="terminal-line"><span>$</span><code>claude</code></div>
+    </section>
+
+    <footer>
+      This page and its connection stay on your computer. Input owns the device connection.<br>
+      Reopen setup with <strong>/worklouder:setup</strong> or check it with <strong>/worklouder:status</strong> in Claude Code.
+    </footer>
+  </main>
+</body>
+</html>

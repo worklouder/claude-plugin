@@ -1,0 +1,59 @@
+#!/bin/sh
+# Downloads the pinned official Node.js, verifies its SHA-256 and installs it in the plugin's data folder.
+set -eu
+trap '' HUP
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+state=${WORKLOUDER_STATE_DIR:-"$HOME/Library/Application Support/Work Louder/Claude Code"}
+. "${WORKLOUDER_NODE_RUNTIME:-$root/scripts/node-runtime}"
+dir="$state/runtime"
+target="$dir/v$node_version"
+failed="$dir/.failed"
+[ -x "$target/bin/node" ] && exit 0
+
+umask 077
+mkdir -p "$dir"
+lock="$dir/.lock"
+if ! mkdir "$lock" 2>/dev/null; then
+  # A download that died more than 15 minutes ago leaves its lock behind.
+  [ -n "$(find "$lock" -maxdepth 0 -mmin +15 2>/dev/null)" ] || exit 0
+  rm -rf "$lock"
+  mkdir "$lock" 2>/dev/null || exit 0
+fi
+tmp=""
+trap 'rm -rf "$lock" ${tmp:+"$tmp"}' EXIT
+
+# After a failure, hooks wait an hour before trying again; status and setup pass --now.
+if [ "${1:-}" != "--now" ] && [ -n "$(find "$failed" -maxdepth 0 -mmin -60 2>/dev/null)" ]; then exit 0; fi
+
+fail() {
+  printf '%s\n' "$1" > "$failed"
+  exit 1
+}
+
+# Pick the build from the hardware: a terminal under Rosetta reports x86_64 on Apple silicon.
+if [ "$(sysctl -n hw.optional.arm64 2>/dev/null || true)" = "1" ]; then
+  arch=arm64 sha=$node_sha256_arm64
+else
+  arch=x64 sha=$node_sha256_x64
+fi
+name="node-v$node_version-darwin-$arch"
+tmp=$(mktemp -d "$dir/.download.XXXXXX")
+
+curl -fsSL --retry 2 --connect-timeout 15 --max-time 900 -o "$tmp/node.tar.xz" "$node_dist/v$node_version/$name.tar.xz" \
+  || fail "Downloading Node.js from $node_dist failed."
+printf '%s  %s\n' "$sha" "$tmp/node.tar.xz" | shasum -a 256 -c - >/dev/null 2>&1 \
+  || fail "The downloaded Node.js did not match its expected SHA-256 hash."
+tar -xf "$tmp/node.tar.xz" -C "$tmp" "$name/bin/node" "$name/LICENSE" \
+  || fail "The downloaded Node.js archive could not be extracted."
+[ "$("$tmp/$name/bin/node" -p process.version 2>/dev/null || true)" = "v$node_version" ] \
+  || fail "The downloaded Node.js did not run."
+
+mv "$tmp/$name" "$target"
+rm -f "$failed"
+for old in "$dir"/v*; do
+  if [ -d "$old" ] && [ "$old" != "$target" ]; then rm -rf "$old"; fi
+done
+
+# Open setup now if the first Claude Code session started before Node.js was available.
+"$target/bin/node" "$root/src/main.mjs" onboard >/dev/null 2>&1 || true

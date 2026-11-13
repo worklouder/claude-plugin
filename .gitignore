@@ -1,0 +1,6 @@
+# InputKit is committed so marketplace installs work without npm.
+node_modules/*
+!node_modules/@worklouder/
+.claude/
+.DS_Store
+*.log

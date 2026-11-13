@@ -1,0 +1,20 @@
+{
+  "name": "worklouder",
+  "displayName": "Work Louder",
+  "version": "1.0.0",
+  "description": "Claude Code session lights and Agent Keys through Work Louder Input on macOS.",
+  "author": {
+    "name": "Work Louder Inc."
+  },
+  "homepage": "https://github.com/worklouder/claude-plugin",
+  "repository": "https://github.com/worklouder/claude-plugin",
+  "supportUrl": "https://feedback.worklouder.cc/",
+  "license": "Apache-2.0",
+  "icon": "./.claude-plugin/icon.png",
+  "keywords": [
+    "work-louder",
+    "device",
+    "lighting",
+    "terminal"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "worklouder-claude-code-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Work Louder Input integration for Claude Code in macOS terminals",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.4.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-plugin.mjs"
+  },
+  "dependencies": {
+    "@worklouder/input-kit": "0.2.0"
+  },
+  "devDependencies": {
+    "ws": "8.22.2"
+  }
+}

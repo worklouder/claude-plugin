@@ -1,0 +1,287 @@
+{
+  "id": 1,
+  "name": "Claude Code",
+  "description": "Agent Keys and terminal controls for Claude Code on macOS.",
+  "os": [
+    0
+  ],
+  "keyboardLayoutTypes": [
+    "universal"
+  ],
+  "devices": [
+    "codex_micro",
+    "creator_micro_v2",
+    "creator_micro_v2_base",
+    "creator_micro_v2_pro"
+  ],
+  "layer": {
+    "id": 0,
+    "name": "Claude Code",
+    "color": "#2864FF",
+    "layout": {
+      "base": [
+        [
+          {
+            "keycode": "SA_1"
+          },
+          {
+            "keycode": "SA_2"
+          }
+        ],
+        [
+          {
+            "keycode": "SA_3"
+          },
+          {
+            "keycode": "SA_4"
+          },
+          {
+            "keycode": "SA_5"
+          },
+          {
+            "keycode": "SA_6"
+          }
+        ],
+        [
+          {
+            "keycode": "KA_5"
+          },
+          {
+            "keycode": "KC_ENT"
+          },
+          {
+            "keycode": "KC_ESC"
+          },
+          {
+            "keycode": "KA_4"
+          }
+        ],
+        [
+          {
+            "keycode": "KC_SPC"
+          },
+          {
+            "keycode": "KC_NONE"
+          },
+          {
+            "keycode": "SA_20"
+          }
+        ]
+      ],
+      "encoders": [
+        [
+          {
+            "keycode": "KC_UP"
+          },
+          {
+            "keycode": "KC_DOWN"
+          },
+          {
+            "keycode": "KC_ENT"
+          }
+        ]
+      ],
+      "joystick": {
+        "type": "RADIAL",
+        "sectors": [
+          {
+            "k": "KC_PGUP",
+            "a1": 0.625,
+            "a2": 0.875
+          },
+          {
+            "k": "SA_14",
+            "a1": 0.875,
+            "a2": 0.125
+          },
+          {
+            "k": "KC_PGDN",
+            "a1": 0.125,
+            "a2": 0.375
+          },
+          {
+            "k": "SA_13",
+            "a1": 0.375,
+            "a2": 0.625
+          }
+        ]
+      }
+    },
+    "os": 0
+  },
+  "actions": [
+    {
+      "id": 4,
+      "name": "Open Model Picker",
+      "color": null,
+      "keyInputs": [
+        {
+          "keycode": "KC_LALT",
+          "delay": 0,
+          "actionType": 1
+        },
+        {
+          "keycode": "KC_P",
+          "delay": 0,
+          "actionType": 1
+        },
+        {
+          "keycode": "KC_LALT",
+          "delay": 0,
+          "actionType": 0
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Review Changes",
+      "color": null,
+      "keyInputs": [
+        {
+          "keycode": "KC_SLSH",
+          "delay": 0,
+          "actionType": 2
+        },
+        {
+          "keycode": "KC_D",
+          "delay": 0,
+          "actionType": 2
+        },
+        {
+          "keycode": "KC_I",
+          "delay": 0,
+          "actionType": 2
+        },
+        {
+          "keycode": "KC_F",
+          "delay": 0,
+          "actionType": 2
+        },
+        {
+          "keycode": "KC_F",
+          "delay": 0,
+          "actionType": 2
+        },
+        {
+          "keycode": "KC_ENT",
+          "delay": 0,
+          "actionType": 2
+        }
+      ]
+    }
+  ],
+  "actionGroups": [
+    {
+      "id": 1,
+      "name": "Claude Code",
+      "color": "#2864FF",
+      "actionIds": [
+        4,
+        5
+      ]
+    }
+  ],
+  "multiactions": [],
+  "multiactionGroups": [],
+  "smartActions": [
+    {
+      "id": 1,
+      "name": "Agent 1",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.1"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Agent 2",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.2"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Agent 3",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.3"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Agent 4",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.4"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Agent 5",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.5"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Agent 6",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.agent.6"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Previous Session",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.session.previous"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Next Session",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.session.next"
+      }
+    },
+    {
+      "id": 20,
+      "name": "New Chat",
+      "color": null,
+      "type": "API",
+      "payload": {
+        "id": "claude.new"
+      }
+    }
+  ],
+  "smartActionGroups": [
+    {
+      "id": 1,
+      "name": "Claude Code",
+      "color": "#2864FF",
+      "actionIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        13,
+        14,
+        20
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+#!/bin/sh
+set -eu
+
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+state=${WORKLOUDER_STATE_DIR:-"$HOME/Library/Application Support/Work Louder/Claude Code"}
+. "${WORKLOUDER_NODE_RUNTIME:-$root/scripts/node-runtime}"
+unset NODE_OPTIONS NODE_REPL_EXTERNAL_MODULE
+# Node.js runs as a child of this script, so a hook finds its Claude Code session through this variable.
+export WORKLOUDER_OWNER_PID=$PPID
+
+# Node.js on PATH comes first, then the copy the plugin downloaded.
+# src/main.mjs exits with 3, before reading any input, when its Node.js is older than 22.4.
+for runtime in "${WORKLOUDER_NODE_PATH:-$(command -v node || true)}" "$state/runtime/v$node_version/bin/node"; do
+  if [ -n "$runtime" ] && [ -x "$runtime" ]; then
+    code=0
+    "$runtime" "$root/src/main.mjs" "$@" || code=$?
+    [ "$code" -eq 3 ] || exit "$code"
+  fi
+done
+
+# No usable Node.js: download one in the background so a hook never waits for it.
+if [ "${1:-}" = "hook" ]; then
+  "$root/scripts/install-node" </dev/null >/dev/null 2>&1 &
+  exit 0
+fi
+"$root/scripts/install-node" --now </dev/null >/dev/null 2>&1 &
+if [ -f "$state/runtime/.failed" ]; then
+  printf 'Work Louder needs Node.js 22.4 or later. %s Trying again now; install Node.js 22.4 or later if this keeps failing.\n' "$(cat "$state/runtime/.failed")" >&2
+else
+  printf 'Work Louder is downloading Node.js %s (about 26 MB, once). Try again in a minute.\n' "$node_version" >&2
+fi
+exit 1
