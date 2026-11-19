@@ -3,7 +3,7 @@
 ## Passed
 
 - Claude Code 2.1.311 validated both manifests with `--strict`. The package check also verified the launcher, setup and status skills, local setup assets, and device layer identifiers.
-- All eight automated tests passed. They cover InputKit pairing and reconnection with a simulated server, per-key lighting, lifecycle state, stale-session protection, terminal detection, per-terminal focus and New Chat scripts, terminal error messages, and the complete first-run browser flow.
+- All 11 automated tests passed. They cover InputKit pairing and reconnection with a simulated server, per-key lighting, lifecycle state, stale-session protection, terminal detection, per-terminal focus and New Chat scripts, terminal error messages, and the complete first-run browser flow.
 - The onboarding test verifies the one-time setup claim, one automatic authorization attempt, bearer-token and browser-origin enforcement, current device/profile confirmation, and one confirmed layer write.
 - Two actual Claude Code CLI processes loaded the plugin and answered a local model fixture. Each supplied a distinct TTY, caused its own Agent Key to turn blue on a simulated Input server, and released its slot on exit.
 - A separate macOS Terminal probe switched between two exact TTYs in both directions and restored the starting selection.
