@@ -18,6 +18,14 @@
     "id": 0,
     "name": "Claude Code",
     "color": "#2864FF",
+    "lights": {
+      "backlight": {
+        "effect": 0
+      },
+      "underglow": {
+        "effect": 0
+      }
+    },
     "layout": {
       "base": [
         [
@@ -174,7 +182,7 @@
     {
       "id": 1,
       "name": "Claude Code",
-      "color": "#2864FF",
+      "color": "#D97757",
       "actionIds": [
         4,
         5
@@ -270,7 +278,7 @@
     {
       "id": 1,
       "name": "Claude Code",
-      "color": "#2864FF",
+      "color": "#D97757",
       "actionIds": [
         1,
         2,

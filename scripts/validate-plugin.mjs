@@ -34,6 +34,10 @@ assert.deepEqual(layer.layer.layout.encoders[0].map(({ keycode }) => keycode), [
 assert.deepEqual(layer.layer.layout.joystick.sectors.map(({ k }) => k), ["KC_PGUP", "SA_14", "KC_PGDN", "SA_13"]);
 assert.deepEqual(layer.layer.layout.base[2].map(({ keycode }) => keycode), ["KA_5", "KC_ENT", "KC_ESC", "KA_4"]);
 assert.deepEqual(layer.layer.layout.base[3].map(({ keycode }) => keycode), ["KC_SPC", "KC_NONE", "SA_20"]);
+assert.deepEqual(layer.layer.lights, { backlight: { effect: 0 }, underglow: { effect: 0 } });
+for (const group of [...layer.actionGroups, ...layer.multiactionGroups, ...layer.smartActionGroups]) {
+  assert.equal(group.color, "#D97757");
+}
 const review = layer.actions.find(({ id }) => id === 5);
 assert.deepEqual(review?.keyInputs.map(({ keycode, actionType }) => [keycode, actionType]), [
   ["KC_SLSH", 2], ["KC_D", 2], ["KC_I", 2], ["KC_F", 2], ["KC_F", 2], ["KC_ENT", 2],
